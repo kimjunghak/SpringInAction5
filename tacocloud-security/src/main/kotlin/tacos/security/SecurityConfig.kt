@@ -2,6 +2,7 @@ package tacos.security
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.http.HttpMethod
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.crypto.factory.PasswordEncoderFactories
@@ -24,15 +25,22 @@ class SecurityConfig {
 
         return http
             .authorizeHttpRequests {
-                it.requestMatchers(
-                    matcherBuilder.pattern("/design"),
-                    matcherBuilder.pattern("/orders")
-                ).hasRole("USER")
+                it
+                    .requestMatchers(HttpMethod.OPTIONS).permitAll()
+                    .requestMatchers(
+                        matcherBuilder.pattern("/design"),
+                        matcherBuilder.pattern("/orders/**")
+                    ).permitAll()
+//                ).hasRole("USER")
+                    .requestMatchers(HttpMethod.PUT, "/ingredients").permitAll()
                     .requestMatchers(
                         matcherBuilder.pattern("/"),
                         matcherBuilder.pattern("/**"),
                         AntPathRequestMatcher("/h2-console/**")
                     ).permitAll()
+            }
+            .httpBasic {
+                it.realmName("Taco Cloud")
             }
             .formLogin {
                 it.loginPage("/login")
@@ -41,8 +49,10 @@ class SecurityConfig {
             .logout {
                 it.logoutSuccessUrl("/")
             }
-            .csrf { it.ignoringRequestMatchers(AntPathRequestMatcher("/h2-console/**")) }
-            .headers { it.frameOptions {option -> option.sameOrigin()} }
+            .csrf { it.ignoringRequestMatchers(AntPathRequestMatcher("/h2-console/**"))
+                .ignoringRequestMatchers("/ingredients/**", "/design", "/orders/**")
+            }
+            .headers { it.frameOptions { option -> option.sameOrigin() } }
             .build()
     }
 
