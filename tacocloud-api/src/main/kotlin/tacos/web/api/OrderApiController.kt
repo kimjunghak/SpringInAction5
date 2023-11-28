@@ -5,19 +5,24 @@ import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 import tacos.Order
 import tacos.data.OrderRepository
+import tacos.messaging.OrderMessagingService
 
 @RestController
 @RequestMapping(path = ["/orders"], produces = ["application/json"])
 @CrossOrigin(origins = ["*"])
 class OrderApiController(
-    private val orderRepository: OrderRepository
+    private val orderRepository: OrderRepository,
+    private val orderMessage: OrderMessagingService
 ) {
     @GetMapping(produces = ["application/json"])
     fun allOrders() = orderRepository.findAll().toList()
 
     @PostMapping(produces = ["application/json"])
     @ResponseStatus(HttpStatus.CREATED)
-    fun postOrder(@RequestBody order: Order) = orderRepository.save(order)
+    fun postOrder(@RequestBody order: Order) {
+        orderMessage.sendOrder(order)
+        orderRepository.save(order)
+    }
 
     @PutMapping(path = ["/{orderId}"], produces = ["application/json"])
     fun pathOrder(@PathVariable orderId: Long,

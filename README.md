@@ -11,3 +11,10 @@ Spring Boot 2.2.0 이후로 변경된 점
 - PagedResources -> PagedModel
 - ResourceAssembler -> RepresentationModelAssembler
 - ControllerLinkBuilder -> WebMvcLinkBuilder
+
+### RabbitMQ
+RabbitMQ 를 docker 로 실행
+```bash
+docker-compose up -d rabbitmq
+```
+TacoCloudApplication(Producer): 8080 & TacoKitchenApplication(Consumer): 8081 실행

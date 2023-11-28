@@ -9,6 +9,11 @@ spring:
     url: jdbc:h2:mem:testdb
     username: sa
     password:
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: tacoweb
+    password: l3tm31n
 
 taco:
   orders:
@@ -27,6 +32,11 @@ spring:
     url: jdbc:mysql://localhost:3306/tacocloud
     username: tacouser
     password: tacopassword
+  rabbitmq:
+    host: localhost
+    port: 5673
+    username: tacoweb
+    password: l3tm31n
 
 logging:
   level:
