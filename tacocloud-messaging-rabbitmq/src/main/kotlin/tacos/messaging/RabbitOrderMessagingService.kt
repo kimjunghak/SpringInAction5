@@ -1,10 +1,13 @@
 package tacos.messaging
 
 import org.springframework.amqp.rabbit.core.RabbitTemplate
+import org.springframework.beans.factory.annotation.Qualifier
+import org.springframework.context.annotation.Primary
 import org.springframework.stereotype.Service
 import tacos.Order
 
 @Service
+@Qualifier
 class RabbitOrderMessagingService(
     private val rabbitTemplate: RabbitTemplate,
 ) : OrderMessagingService {

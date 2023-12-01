@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration
 
 
 @Configuration
-class MessagingConfig{
+class RabbitMessagingConfig{
 
     @Bean
     fun messageConverter() = Jackson2JsonMessageConverter()

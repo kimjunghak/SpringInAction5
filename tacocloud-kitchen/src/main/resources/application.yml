@@ -7,3 +7,10 @@ spring:
     port: 5672
     username: tacoweb
     password: l3tm31n
+
+  kafka:
+    consumer:
+      group-id: tacocloud-group
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "*"

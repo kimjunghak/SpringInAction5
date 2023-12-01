@@ -14,6 +14,14 @@ spring:
     port: 5672
     username: tacoweb
     password: l3tm31n
+  kafka:
+    bootstrap-servers:
+      - localhost:9092
+    template:
+      default-topic: tacocloud.orders.topic
+    producer:
+      key-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
 
 taco:
   orders:

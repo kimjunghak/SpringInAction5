@@ -5,4 +5,5 @@ dependencies {
     api(project(":tacocloud-api"))
     api(project(":tacocloud-restclient"))
     api(project(":tacocloud-messaging-rabbitmq"))
+    api(project(":tacocloud-messaging-kafka"))
 }

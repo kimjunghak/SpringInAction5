@@ -1,5 +1,6 @@
 package tacos.web.api
 
+import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.dao.EmptyResultDataAccessException
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
@@ -12,7 +13,10 @@ import tacos.messaging.OrderMessagingService
 @CrossOrigin(origins = ["*"])
 class OrderApiController(
     private val orderRepository: OrderRepository,
-    private val orderMessage: OrderMessagingService
+    @Qualifier("rabbitOrderMessagingService")
+    private val rabbitOrderMessage: OrderMessagingService,
+    @Qualifier("kafkaOrderMessagingService")
+    private val kafkaOrderMessage: OrderMessagingService,
 ) {
     @GetMapping(produces = ["application/json"])
     fun allOrders() = orderRepository.findAll().toList()
@@ -20,7 +24,8 @@ class OrderApiController(
     @PostMapping(produces = ["application/json"])
     @ResponseStatus(HttpStatus.CREATED)
     fun postOrder(@RequestBody order: Order) {
-        orderMessage.sendOrder(order)
+//        rabbitOrderMessage.sendOrder(order)
+        kafkaOrderMessage.sendOrder(order)
         orderRepository.save(order)
     }
 
