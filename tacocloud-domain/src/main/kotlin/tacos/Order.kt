@@ -48,6 +48,10 @@ class Order (
     var users: Users? = null
 ): Serializable {
 
+    constructor(email: String): this() {
+        this.deliveryName = email
+    }
+
     private val serialVersionUID: Long = 1L
 
     fun addDesign(design: Taco) {

@@ -23,6 +23,10 @@ class Taco(
 
     var createdAt: Date? = Date(),
 ) {
+
+    constructor(name: String): this() {
+        this.name = name
+    }
     @PrePersist
     fun createdAt() {
         this.createdAt = Date()

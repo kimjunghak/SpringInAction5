@@ -69,3 +69,9 @@ spring:
   - 직렬화, 역직렬화 과정에서는 package 이름까지 포함하기때문에 consumer 쪽에서 에러 발생
 
 spring-kafka 에 대해서 간단히 알아보았지만 kafka에 대해서 좀 더 깊게 알아볼 필요를 느꼈다 RabbitMQ 와 다르게 복잡하다..
+
+
+### 번외
+@ConfigurationProperties 사용할 때 `Annotated with @ConstructorBinding but defined as Spring component` 오류 원인
+
+기본생성자를 통해서 property를 주입하는 방식이기 때문에 Kotlin에서는 기본생성자 만드는 것을 주의해야 한다.
