@@ -14,8 +14,8 @@ class TacoRepresentationModelAssembler: RepresentationModelAssembler<Taco, TacoE
         return TacoEntityModel(entity)
     }
 
-    override fun toCollectionModel(entities: MutableIterable<Taco>): CollectionModel<TacoEntityModel> {
-        return super.toCollectionModel(entities )
-            .add(linkTo(methodOn(RecentTacosController::class.java).recentTacos()).withSelfRel())
-    }
+//    override fun toCollectionModel(entities: MutableIterable<Taco>): CollectionModel<TacoEntityModel> {
+//        return super.toCollectionModel(entities )
+//            .add(linkTo(methodOn(RecentTacosController::class.java).recentTacos()).withSelfRel())
+//    }
 }

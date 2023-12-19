@@ -6,9 +6,9 @@ import jakarta.validation.constraints.Size
 import org.springframework.data.rest.core.annotation.RestResource
 import java.util.Date
 
-@Entity
+//@Entity
 @RestResource(rel = "tacos", path = "tacos")
-class Taco(
+data class Taco(
     @field:Id
     @field:GeneratedValue(strategy = GenerationType.AUTO)
     var id: Long? = null,

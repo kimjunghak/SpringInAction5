@@ -18,14 +18,14 @@ class RecentTacosController(
     private val tacoRepresentationModelAssembler: TacoRepresentationModelAssembler,
 ) {
 
-    @GetMapping(path = ["/tacos/recent"], produces = ["application/hal+json"])
-    fun recentTacos(): ResponseEntity<CollectionModel<TacoEntityModel>> {
-        val page = PageRequest.of(0, 12, Sort.by("createdAt").descending())
-
-
-        val tacosPage = tacoRepository.findAll(page)
-        val pagedModel = pagedModelAssembler.toModel(tacosPage, tacoRepresentationModelAssembler)
-
-        return ResponseEntity.ok(pagedModel)
-    }
+//    @GetMapping(path = ["/tacos/recent"], produces = ["application/hal+json"])
+//    fun recentTacos(): ResponseEntity<CollectionModel<TacoEntityModel>> {
+//        val page = PageRequest.of(0, 12, Sort.by("createdAt").descending())
+//
+//
+//        val tacosPage = tacoRepository.findAll(page)
+//        val pagedModel = pagedModelAssembler.toModel(tacosPage, tacoRepresentationModelAssembler)
+//
+//        return ResponseEntity.ok(pagedModel)
+//    }
 }

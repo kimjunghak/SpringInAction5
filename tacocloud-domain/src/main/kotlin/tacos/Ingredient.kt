@@ -5,8 +5,8 @@ import jakarta.persistence.EnumType
 import jakarta.persistence.Enumerated
 import jakarta.persistence.Id
 
-@Entity
-class Ingredient(
+//@Entity
+data class Ingredient(
     @field:Id
     var id: String,
     var name: String,
