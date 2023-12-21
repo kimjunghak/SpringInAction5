@@ -1,0 +1,5 @@
+spring:
+  data:
+    mongodb:
+      username: tacocloud
+      password: mongodbtaco
